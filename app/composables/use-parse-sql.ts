@@ -23,8 +23,8 @@ export const useParseSql = () => {
   }
 
   const getTableName = (partSql: string, convertType: ConvertType) => {
-    const sqlWords = partSql.split(' ')
-    if (sqlWords.length !== 4) {
+    const sqlWords = partSql.trim().split(' ')
+    if (sqlWords.length !== 3) {
       throw createParseError()
     }
     return convertCase(sqlWords[2], convertType)

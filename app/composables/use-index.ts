@@ -85,7 +85,7 @@ export const useIndex = () => {
   }
 
   const createResultXml = (xmlLines: Array<string>) => {
-    return xmlLines.join('\n')
+    return xmlLines.join('\n') + '\n'
   }
 
   const clearXmlText = () => {
