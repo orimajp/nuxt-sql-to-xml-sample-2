@@ -43,7 +43,6 @@ export const useIndex = () => {
   watch(
     () => form,
     () => {
-      console.log(`sqlText=${form.sqlText}`)
       if (form.sqlText === '') {
         errorMessage.value = ''
         xmlText.value = ''
