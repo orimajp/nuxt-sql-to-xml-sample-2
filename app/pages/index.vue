@@ -38,7 +38,11 @@
           readonly
         ></b-form-textarea>
         <div class="text-right mt-2">
-          <b-button variant="outline-secondary" size="lg" @click="copyXml"
+          <b-button
+            v-if="!errorState"
+            variant="outline-secondary"
+            size="lg"
+            @click="copyXml"
             >XML Copy</b-button
           >
         </div>
