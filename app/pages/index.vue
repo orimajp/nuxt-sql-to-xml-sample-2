@@ -11,6 +11,7 @@
           >
         </div>
         <b-form-textarea
+          ref="sqlTextAreaRef"
           v-model="sqlText"
           placeholder="INSERT INTO USER (ID,USERNAME) values (1, 'mine');..."
           rows="8"
@@ -66,6 +67,7 @@ export default defineComponent({
       nodataState,
       successState,
       errorState,
+      sqlTextAreaRef,
       clearXmlText,
       copyXml,
     } = useIndex()
@@ -78,6 +80,7 @@ export default defineComponent({
       nodataState,
       successState,
       errorState,
+      sqlTextAreaRef,
       clearXmlText,
       copyXml,
     }
