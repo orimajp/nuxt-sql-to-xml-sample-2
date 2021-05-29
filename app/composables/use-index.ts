@@ -1,4 +1,12 @@
-import { computed, reactive, ref, toRefs, watch } from '@nuxtjs/composition-api'
+import {
+  computed,
+  nextTick,
+  onMounted,
+  reactive,
+  ref,
+  toRefs,
+  watch,
+} from '@nuxtjs/composition-api'
 import { useClipboard } from '@vueuse/core'
 import { useParseSql } from '~/composables/use-parse-sql'
 import { useCreateErrorMessage } from '~/composables/use-create-error-message'
@@ -33,6 +41,7 @@ export const useIndex = () => {
   )
   const successState = computed(() => xmlText.value !== '')
   const errorState = computed(() => errorMessage.value !== '')
+  const sqlTextAreaRef = ref<HTMLTextAreaElement>({} as HTMLTextAreaElement)
 
   const { parseSql } = useParseSql()
   const { createErrorMessage } = useCreateErrorMessage()
@@ -52,6 +61,14 @@ export const useIndex = () => {
     },
     { deep: true }
   )
+
+  onMounted(() => {
+    nextTick(() => focusSqlTextArea())
+  })
+
+  const focusSqlTextArea = () => {
+    sqlTextAreaRef.value.focus()
+  }
 
   const convertSqlToXml = () => {
     const sqlLines = form.sqlText.split('\n')
@@ -89,6 +106,7 @@ export const useIndex = () => {
 
   const clearXmlText = () => {
     form.sqlText = ''
+    focusSqlTextArea()
   }
 
   const copyXml = () => {
@@ -102,6 +120,7 @@ export const useIndex = () => {
     nodataState,
     successState,
     errorState,
+    sqlTextAreaRef,
     clearXmlText,
     copyXml,
   }
